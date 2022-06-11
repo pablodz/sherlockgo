@@ -14,7 +14,7 @@ func main() {
 	// download json from sherlock
 	scraper.LoadData(db, "https://raw.githubusercontent.com/sherlock-project/sherlock/master/sherlock/resources/data.json")
 	// start scraper with username
-	// scraper.ScrapeThisUsername(db, "pablodz")
+	scraper.ScrapeThisUsername(db, "pablodz")
 	// start server
 	HandleServer(db)
 }

@@ -11,7 +11,7 @@ import (
 func ScrapeThisUsername(db *gorm.DB, username string) {
 	// get all sites
 	var listSites []models.Sites
-	db.Find(listSites, &models.Sites{})
+	db.Find(&listSites)
 	// create http client
 	client := &http.Client{}
 
@@ -27,6 +27,7 @@ loopQuery:
 
 func doSearchOneSite(username string, site models.Sites, client *http.Client) {
 	url := ParseFormatWithUsername(username, site)
+	log.Println("Searching in:", site.Sitename, "for", username, "at", url)
 	err := GetResponse(client, url)
 	if err != nil {
 		log.Println("[GetResponse][Error]", err)
