@@ -1,6 +1,8 @@
 package scraper
 
 import (
+	"io"
+	"log"
 	"net/http"
 	"strings"
 
@@ -12,14 +14,32 @@ func ParseFormatWithUsername(username string, site models.Sites) string {
 	return strings.Replace(format, "{}", username, -1)
 }
 
-func GetResponse(client *http.Client, url string) (err error) {
+func GetResponse(client *http.Client, url string, site models.Sites) (found bool, statusCode int, err error) {
 	resp, err := client.Get(url)
 	if err != nil {
-		return err
+		return false, 0, err
 	}
 	defer resp.Body.Close()
-	if resp.StatusCode != 200 {
-		return err
+
+	if site.ErrorType == "status_code" {
+		if resp.StatusCode != 200 {
+			return false, resp.StatusCode, nil
+		}
+		return true, resp.StatusCode, nil
+	} else if site.ErrorType == "message" {
+		b, err := io.ReadAll(resp.Body)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		// Contains error message
+		if strings.Contains(strings.ToLower(string(b)), strings.ToLower(site.ErrorMessage)) {
+			return true, resp.StatusCode, nil
+		} else {
+			return false, resp.StatusCode, nil
+		}
+	} else if site.ErrorType == "response_url" {
+	} else {
+		log.Println("No error type supported yet")
 	}
-	return nil
+	return false, 0, nil
 }

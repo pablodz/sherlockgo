@@ -1,6 +1,8 @@
 package main
 
 import (
+	"time"
+
 	"github.com/jinzhu/gorm"
 	"github.com/pablodz/sherlockgo/internal/database"
 	"github.com/pablodz/sherlockgo/internal/endpoints"
@@ -11,6 +13,7 @@ import (
 func main() {
 	// start database
 	db, _ := database.StartDatabase("sherlockgo")
+	time.Sleep(time.Second * 3)
 	// download json from sherlock
 	scraper.LoadData(db, "https://raw.githubusercontent.com/sherlock-project/sherlock/master/sherlock/resources/data.json")
 	// start scraper with username

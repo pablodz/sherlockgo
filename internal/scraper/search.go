@@ -27,9 +27,15 @@ loopQuery:
 
 func doSearchOneSite(username string, site models.Sites, client *http.Client) {
 	url := ParseFormatWithUsername(username, site)
-	log.Println("Searching in:", site.Sitename, "for", username, "at", url)
-	err := GetResponse(client, url)
+	found, statusCode, err := GetResponse(client, url, site)
 	if err != nil {
 		log.Println("[GetResponse][Error]", err)
 	}
+
+	if found {
+		log.Println("[FOUND]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
+	} else {
+		log.Println("[FOUND][NOT]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
+	}
+
 }

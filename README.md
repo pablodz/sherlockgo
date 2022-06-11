@@ -19,3 +19,8 @@ CLI:
 - [ ] Timeout "--timeout"
 - [ ] Username "--username" // one or more
 
+Error Types:
+
+- [x] response_url
+- [x] status_code
+- [x] message

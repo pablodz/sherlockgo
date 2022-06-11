@@ -2,6 +2,7 @@ package scraper
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -32,7 +33,7 @@ func LoadData(db *gorm.DB, url string) {
 	// read our opened jsonFile as a byte array.
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	//initialize struct
-	var sites map[string]models.Sites
+	var sites map[string]models.SitesJSON
 	// jsonFile's content into 'sites' which we defined above
 	// fmt.Println(string(byteValue))
 	err = json.Unmarshal(byteValue, &sites)
@@ -51,10 +52,15 @@ func LoadData(db *gorm.DB, url string) {
 			log.Println("ADDED NOW: ", siteName)
 		}
 
+		errMssg := fmt.Sprint(siteProps.ErrorMessage)
+		if errMssg == "<nil>" {
+			errMssg = ""
+		}
+
 		db.Create(&models.Sites{
 			Sitename:          siteName,
 			ErrorType:         siteProps.ErrorType,
-			ErrorMessage:      siteProps.ErrorMessage,
+			ErrorMessage:      errMssg,
 			URLDomain:         siteProps.URLDomain,
 			URLFormat:         siteProps.URLFormat,
 			UsernameClaimed:   siteProps.UsernameClaimed,
