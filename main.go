@@ -10,16 +10,19 @@ import (
 
 func main() {
 	// start database
-	db, _ := database.StartDatabase()
-	// start server
-	go HandleServer(db)
+	db, _ := database.StartDatabase("sherlockgo")
 	// download json from sherlock
 	scraper.LoadData(db, "https://raw.githubusercontent.com/sherlock-project/sherlock/master/sherlock/resources/data.json")
+	// start scraper with username
+	// scraper.ScrapeThisUsername(db, "pablodz")
+	// start server
+	HandleServer(db)
 }
 
 func HandleServer(Db *gorm.DB) {
 	// Migrate to create tables in database
 	Db.AutoMigrate(&models.Sites{})
+	Db.AutoMigrate(&models.Query{})
 	// start Golang Echo server
 	endpoints.HandleRequest(Db)
 }

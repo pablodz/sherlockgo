@@ -32,15 +32,34 @@ func LoadData(db *gorm.DB, url string) {
 	// read our opened jsonFile as a byte array.
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 	//initialize struct
-	var sites []models.Sites
+	var sites map[string]models.Sites
 	// jsonFile's content into 'sites' which we defined above
+	// fmt.Println(string(byteValue))
 	err = json.Unmarshal(byteValue, &sites)
 	if err != nil {
 		log.Println(err)
 	}
 	// save to database
-	for _, site := range sites {
-		err := db.Save(&site).Error
+	for siteName, siteProps := range sites {
+		// Check if already exists
+		var siteTmp []models.Sites
+		db.Find(&siteTmp, &models.Sites{Sitename: siteName})
+		if len(siteTmp) != 0 {
+			log.Println("ALREADY ADDED: ", siteName)
+			continue
+		} else {
+			log.Println("ADDED NOW: ", siteName)
+		}
+
+		db.Create(&models.Sites{
+			Sitename:          siteName,
+			ErrorType:         siteProps.ErrorType,
+			ErrorMessage:      siteProps.ErrorMessage,
+			URLDomain:         siteProps.URLDomain,
+			URLFormat:         siteProps.URLFormat,
+			UsernameClaimed:   siteProps.UsernameClaimed,
+			UsernameUnclaimed: siteProps.UsernameUnclaimed,
+		})
 		if err != nil {
 			log.Println(err)
 		}

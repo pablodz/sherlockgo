@@ -9,7 +9,6 @@ import (
 )
 
 func ScrapeThisUsername(db *gorm.DB, username string) {
-
 	// get all sites
 	var listSites []models.Sites
 	db.Find(listSites, &models.Sites{})
@@ -24,7 +23,6 @@ loopQuery:
 			break loopQuery
 		}
 	}
-
 }
 
 func doSearchOneSite(username string, site models.Sites, client *http.Client) {

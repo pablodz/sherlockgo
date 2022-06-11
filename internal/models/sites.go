@@ -2,11 +2,11 @@ package models
 
 import (
 	"github.com/jinzhu/gorm"
-	// _ "github.com/jinzhu/gorm/dialects/sqlite"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 type Sites struct {
-	gorm.Model `json:"model"`
+	gorm.Model `json:"model,omitempty"`
 
 	Sitename          string `json:"_key" gorm:"unique"`
 	ErrorType         string `json:"errorType"`
