@@ -1,6 +1,6 @@
 # SherlockGo
 
-![Original](https://github.com/sherlock-project/sherlock)
+[Original](https://github.com/sherlock-project/sherlock)
 
 Sherlock but faster and lighter. GUI, CLI, client, Http request and more
 
