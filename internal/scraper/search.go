@@ -33,9 +33,9 @@ func doSearchOneSite(username string, site models.Sites, client *http.Client) {
 	}
 
 	if found {
-		log.Println("[FOUND]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
+		log.Println("[FOUND][YES]["+site.ErrorType+"]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
 	} else {
-		log.Println("[FOUND][NOT]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
+		log.Println("[FOUND][NOT]["+site.ErrorType+"]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
 	}
 
 }

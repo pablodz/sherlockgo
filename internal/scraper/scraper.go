@@ -38,6 +38,16 @@ func GetResponse(client *http.Client, url string, site models.Sites) (found bool
 			return false, resp.StatusCode, nil
 		}
 	} else if site.ErrorType == "response_url" {
+		client = &http.Client{
+			CheckRedirect: func(req *http.Request, via []*http.Request) error {
+				return http.ErrUseLastResponse
+			}}
+		resp, err := client.Get(url)
+		if err != nil {
+			return false, 0, err
+		}
+		defer resp.Body.Close()
+
 	} else {
 		log.Println("No error type supported yet")
 	}
