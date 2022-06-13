@@ -6,13 +6,22 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+var DB *gorm.DB = nil
+
 func StartDatabase(databaseName string) (*gorm.DB, error) {
-	db := "./" + databaseName + ".db"
-	log.Println("Reading database")
-	Db, err := gorm.Open("sqlite3", db)
-	if err != nil {
-		log.Println("[DATABASE][Error]", err)
+
+	var err error = nil
+
+	if DB == nil {
+
+		dbName := "./" + databaseName + ".db"
+		log.Println("Reading database")
+		DB, err = gorm.Open("sqlite3", dbName)
+		if err != nil {
+			log.Println("[DATABASE][Error]", err)
+		}
+
 	}
+	return DB, err
 	// defer Db.Close()
-	return Db, err
 }
