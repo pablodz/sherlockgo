@@ -6,13 +6,14 @@ import (
 	"github.com/pablodz/sherlockgo/internal/endpoints"
 	"github.com/pablodz/sherlockgo/internal/models"
 	"github.com/pablodz/sherlockgo/internal/scraper"
+	"github.com/pablodz/sherlockgo/internal/utils"
 )
 
 func main() {
 	// start database
-	db, _ := database.StartDatabase("sherlockgo")
+	db, _ := database.StartDatabase(utils.MainDbName)
 	// download json from sherlock
-	scraper.LoadData(db, "https://raw.githubusercontent.com/sherlock-project/sherlock/master/sherlock/resources/data.json")
+	scraper.LoadData(db, utils.TestUrl)
 	// start scraper with username
 	scraper.ScrapeThisUsername(db, "pablodz")
 	// start server
