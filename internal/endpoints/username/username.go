@@ -1,10 +1,12 @@
 package username
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
+	"github.com/pablodz/sherlockgo/internal/models"
 	"github.com/pablodz/sherlockgo/internal/scraper"
 )
 
@@ -12,9 +14,37 @@ func GETByUsername(db *gorm.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		username := c.Param("username")
-		scraper.ScrapeThisUsername(db, username)
+		// get all sites
+		var listSites []models.Sites
+		db.Find(&listSites)
+		// create http client
+		client := &http.Client{}
+		// chain responses
+		chainResponses := make(chan models.UsernameRespnse)
 
-		return c.JSON(http.StatusOK, "ok")
+		for _, site := range listSites {
+			go scraper.DoSearchOneSiteChain(username, site, client, chainResponses)
+			// if index == 10 {
+			// 	break
+			// }
+		}
 
+		c.Response().Header().Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+		c.Response().WriteHeader(http.StatusOK)
+
+		enc := json.NewEncoder(c.Response())
+		counter := 0
+		for l := range chainResponses {
+			if err := enc.Encode(l); err != nil {
+				return err
+			}
+			c.Response().Flush()
+			// time.Sleep(100 * time.Millisecond)
+			counter++
+			if counter == len(listSites) {
+				break
+			}
+		}
+		return nil
 	}
 }
