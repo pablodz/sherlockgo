@@ -11,7 +11,7 @@ import (
 
 func main() {
 	// start database
-	db, err := database.StartDatabase(utils.MainDbName)
+	db, err := database.GetDB()
 	if err != nil {
 		panic(err)
 	}

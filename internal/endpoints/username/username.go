@@ -102,8 +102,8 @@ func GETByUsernameAndSiteFilteredByFoundStreaming() echo.HandlerFunc {
 		enc := json.NewEncoder(c.Response())
 		counter := 0
 		for l := range chainResponses {
-			l.IDDownload = strconv.Itoa(counter+1) + "/" + strconv.Itoa(len(listSites))
 			if l.Found == valWasFound {
+				l.IDDownload = strconv.Itoa(counter+1) + "/" + strconv.Itoa(len(listSites))
 				if err := enc.Encode(l); err != nil {
 					return err
 				}

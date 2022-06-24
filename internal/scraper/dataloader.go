@@ -59,7 +59,7 @@ func LoadData(db *gorm.DB, url string) {
 			errMssg = ""
 		}
 
-		db.Create(&models.Sites{
+		result := db.Create(&models.Sites{
 			IDSite:            c,
 			Sitename:          siteName,
 			ErrorType:         siteProps.ErrorType,
@@ -69,6 +69,8 @@ func LoadData(db *gorm.DB, url string) {
 			UsernameClaimed:   siteProps.UsernameClaimed,
 			UsernameUnclaimed: siteProps.UsernameUnclaimed,
 		})
+
+		db.Save(result)
 		c++
 		if err != nil {
 			log.Println(err)

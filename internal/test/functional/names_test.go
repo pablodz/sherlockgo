@@ -46,7 +46,7 @@ func TestGETByUsernameStreaming(t *testing.T) {
 	rec := httptest.NewRecorder()
 	echoContext := echoObj.NewContext(req, rec)
 
-	echoContext.SetPath("/username/:username")
+	echoContext.SetPath("/api/v2/username/:username")
 	echoContext.SetParamNames("username")
 	echoContext.SetParamValues("andrew alizaga")
 
@@ -82,7 +82,7 @@ func TestGETByUsernameAndSiteFilteredByFoundStreaming(t *testing.T) {
 	rec := httptest.NewRecorder()
 	echoContext := echoObj.NewContext(req, rec)
 
-	echoContext.SetPath("/username/:username/found/:found")
+	echoContext.SetPath("/api/v2/username/:username/found/:found")
 	echoContext.SetParamNames("username", "found")
 	echoContext.SetParamValues("andrew alizaga", "true")
 
