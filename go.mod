@@ -5,7 +5,6 @@ go 1.18
 require (
 	github.com/cavaliergopher/grab/v3 v3.0.1
 	github.com/glebarez/sqlite v1.4.5
-	github.com/jinzhu/gorm v1.9.16
 	github.com/labstack/echo v3.3.10+incompatible
 	gorm.io/gorm v1.23.6
 )
