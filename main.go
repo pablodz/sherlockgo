@@ -21,8 +21,8 @@ func main() {
 	scraper.LoadData(db, utils.TestUrl)
 	// start scraper with username
 	// scraper.ScrapeThisUsername(db, "pablodz") // test
-	// start server
-	HandleServer(db)
+	// start Golang Echo server
+	endpoints.HandleRequest(db)
 }
 
 func MigrateModels(db *gorm.DB) {
@@ -30,9 +30,4 @@ func MigrateModels(db *gorm.DB) {
 	db.AutoMigrate(&models.Sites{})
 	// db.AutoMigrate(&models.Query{})
 	db.AutoMigrate(&models.UsernameRespnse{})
-}
-
-func HandleServer(Db *gorm.DB) {
-	// start Golang Echo server
-	endpoints.HandleRequest(Db)
 }
