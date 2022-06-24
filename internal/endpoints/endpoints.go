@@ -28,9 +28,9 @@ func HandleRequest(db *gorm.DB) {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	// Middleware
-	e.Use(middleware.TimeoutWithConfig(middleware.TimeoutConfig{
-		Timeout: 60 * time.Second,
-	}))
+	// e.Use(middleware.TimeoutWithConfig(middleware.TimeoutConfig{
+	// 	Timeout: 60 * time.Second,
+	// }))
 
 	/* Add here the routes or endpoints */
 	e.GET("/api/v2/", GETsimpleResponse())
