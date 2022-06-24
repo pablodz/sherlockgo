@@ -6,13 +6,38 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/pablodz/sherlockgo/internal/database"
+	"github.com/pablodz/sherlockgo/internal/models"
+	"github.com/pablodz/sherlockgo/internal/scraper"
+	"github.com/pablodz/sherlockgo/internal/utils"
+	"gorm.io/gorm"
+
 	"github.com/labstack/echo/v4"
 	"github.com/pablodz/sherlockgo/internal/endpoints/username"
 	"github.com/stretchr/testify/assert"
 )
 
+func MigrateModels(db *gorm.DB) {
+	// Migrate to create tables in database
+	db.AutoMigrate(&models.Sites{})
+	// db.AutoMigrate(&models.Query{})
+	db.AutoMigrate(&models.UsernameResponse{})
+}
+
 func TestGETByUsernameStreaming(t *testing.T) {
 	log.Println("INITIATING GETByUsernameStreaming TEST")
+
+	db, err := database.GetDB()
+
+	if err != nil {
+		t.Errorf("DATABASE ERROR")
+	}
+
+	// migrate
+
+	MigrateModels(db)
+	// download json from sherlock
+	scraper.LoadData(db, utils.TestUrl)
 
 	echoObj := echo.New()
 	req := httptest.NewRequest(http.MethodGet, "/", nil)
@@ -37,6 +62,18 @@ func TestGETByUsernameStreaming(t *testing.T) {
 
 func TestGETByUsernameAndSiteFilteredByFoundStreaming(t *testing.T) {
 	log.Println("INITIATING GETByUsernameAndSiteFilteredByFoundStreaming TEST")
+
+	db, err := database.GetDB()
+
+	if err != nil {
+		t.Errorf("DATABASE ERROR")
+	}
+
+	// migrate
+
+	MigrateModels(db)
+	// download json from sherlock
+	scraper.LoadData(db, utils.TestUrl)
 
 	echoObj := echo.New()
 	req := httptest.NewRequest(http.MethodGet, "/", nil)

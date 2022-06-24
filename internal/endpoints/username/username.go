@@ -2,6 +2,7 @@ package username
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -24,7 +25,11 @@ func GETByUsernameStreaming() echo.HandlerFunc {
 
 			return err
 		}
+
+		log.Println("PRIOR DB CALL")
 		db.Find(&listSites)
+		log.Println("post DB CALL")
+		log.Println(listSites)
 		// create http client
 		client := &http.Client{}
 		// chain responses
@@ -32,9 +37,7 @@ func GETByUsernameStreaming() echo.HandlerFunc {
 
 		for _, site := range listSites {
 			go scraper.DoSearchOneSiteChain(username, site, client, chainResponses)
-			// if index == 10 {
-			// 	break
-			// }
+
 		}
 
 		c.Response().Header().Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
