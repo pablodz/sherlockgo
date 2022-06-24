@@ -4,17 +4,26 @@
 
 Sherlock but faster and lighter. GUI, CLI, client, Http request and more
 
+![](https://imgur.com/KWminza.png)
+
 List of features to implement:
 
 ## Usage
 
-### On Docker image remote
+### Remote (not yet implement)
+
 
 ```shell
 # Then query the sherlock server
 curl https://sherlockgo.herokuapp.com/username/exampleuser
 ```
 
+### Heroku
+
+```shell
+# Then query the sherlock server
+curl https://sherlockgo.herokuapp.com/username/exampleuser
+```
 ### Not compiled
 
 ```shell
