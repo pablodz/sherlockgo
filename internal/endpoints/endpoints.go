@@ -21,7 +21,8 @@ func HandleRequest(db *gorm.DB) {
 	/* Add here the routes or endpoints */
 	e.GET("/", GETsimpleResponse())
 	e.GET("/sites", sites.GETListSites(db))
-	e.GET("/username/:username", username.GETByUsername(db))
+	e.GET("/username/:username", username.GETByUsernameStreaming(db))
+	e.GET("/username/:username/found/:found", username.GETByUsernameAndSiteFilteredByFoundStreaming(db))
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "6969"

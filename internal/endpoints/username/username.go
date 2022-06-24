@@ -11,7 +11,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func GETByUsername(db *gorm.DB) echo.HandlerFunc {
+func GETByUsernameStreaming(db *gorm.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		username := c.Param("username")
@@ -51,7 +51,7 @@ func GETByUsername(db *gorm.DB) echo.HandlerFunc {
 	}
 }
 
-func GETByUsernameAndSiteFilteredByFound(db *gorm.DB) echo.HandlerFunc {
+func GETByUsernameAndSiteFilteredByFoundStreaming(db *gorm.DB) echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		username := c.Param("username")
