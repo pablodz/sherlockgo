@@ -30,4 +30,3 @@ jobs:
           binary_name: "sherlockgo"
           ldflags: "-s -w"
           extra_files: LICENSE README.md
-          executable_compression: "zip"
