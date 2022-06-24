@@ -11,7 +11,7 @@ import (
 
 func main() {
 	// start database
-	db, err := database.StartDatabase(utils.MainDbName)
+	db, err := database.GetDB()
 	if err != nil {
 		panic(err)
 	}
@@ -22,7 +22,7 @@ func main() {
 	// start scraper with username
 	// scraper.ScrapeThisUsername(db, "pablodz") // test
 	// start Golang Echo server
-	endpoints.HandleRequest(db)
+	endpoints.HandleRequest()
 }
 
 func MigrateModels(db *gorm.DB) {

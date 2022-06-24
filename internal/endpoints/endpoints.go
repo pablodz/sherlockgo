@@ -3,6 +3,7 @@ package endpoints
 import (
 	"net/http"
 	"os"
+
 	// "time"
 
 	"github.com/labstack/echo/v4"
@@ -11,10 +12,9 @@ import (
 	"github.com/pablodz/sherlockgo/internal/endpoints/sites"
 	"github.com/pablodz/sherlockgo/internal/endpoints/username"
 	echoSwagger "github.com/swaggo/echo-swagger"
-	"gorm.io/gorm"
 )
 
-func HandleRequest(db *gorm.DB) {
+func HandleRequest() {
 	e := echo.New()
 
 	/* Docs */
@@ -34,9 +34,9 @@ func HandleRequest(db *gorm.DB) {
 
 	/* Add here the routes or endpoints */
 	e.GET("/api/v2/", GETsimpleResponse())
-	e.GET("/api/v2/sites", sites.GETListSites(db))
-	e.GET("/api/v2/username/:username", username.GETByUsernameStreaming(db))
-	e.GET("/api/v2/username/:username/found/:found", username.GETByUsernameAndSiteFilteredByFoundStreaming(db))
+	e.GET("/api/v2/sites", sites.GETListSites())
+	e.GET("/api/v2/username/:username", username.GETByUsernameStreaming())
+	e.GET("/api/v2/username/:username/found/:found", username.GETByUsernameAndSiteFilteredByFoundStreaming())
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	port := os.Getenv("PORT")

@@ -2,22 +2,34 @@ package username
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/pablodz/sherlockgo/internal/database"
 
 	"github.com/labstack/echo/v4"
 	"github.com/pablodz/sherlockgo/internal/models"
 	"github.com/pablodz/sherlockgo/internal/scraper"
-	"gorm.io/gorm"
 )
 
-func GETByUsernameStreaming(db *gorm.DB) echo.HandlerFunc {
+func GETByUsernameStreaming() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		username := c.Param("username")
 		// get all sites
 		var listSites []models.Sites
+		db, err := database.GetDB()
+
+		if err != nil {
+
+			return err
+		}
+
+		log.Println("PRIOR DB CALL")
 		db.Find(&listSites)
+		log.Println("post DB CALL")
+		log.Println(listSites)
 		// create http client
 		client := &http.Client{}
 		// chain responses
@@ -25,9 +37,7 @@ func GETByUsernameStreaming(db *gorm.DB) echo.HandlerFunc {
 
 		for _, site := range listSites {
 			go scraper.DoSearchOneSiteChain(username, site, client, chainResponses)
-			// if index == 10 {
-			// 	break
-			// }
+
 		}
 
 		c.Response().Header().Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
@@ -51,7 +61,7 @@ func GETByUsernameStreaming(db *gorm.DB) echo.HandlerFunc {
 	}
 }
 
-func GETByUsernameAndSiteFilteredByFoundStreaming(db *gorm.DB) echo.HandlerFunc {
+func GETByUsernameAndSiteFilteredByFoundStreaming() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		username := c.Param("username")
@@ -65,6 +75,14 @@ func GETByUsernameAndSiteFilteredByFoundStreaming(db *gorm.DB) echo.HandlerFunc 
 
 		// get all sites
 		var listSites []models.Sites
+
+		db, err := database.GetDB()
+
+		if err != nil {
+
+			return err
+		}
+
 		db.Find(&listSites)
 		// create http client
 		client := &http.Client{}
