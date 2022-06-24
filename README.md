@@ -8,7 +8,7 @@ Sherlock but faster and lighter. GUI, CLI, client, Http request and more
 
 ## Documentation
 
-Clic [here](http://localhost:6969/swagger/index.html) to see the documentation
+Clic [here](https://sherlockgo.herokuapp.com/swagger/index.html) to see the documentation
 ## Usage
 
 ### Remote (not yet implement)
