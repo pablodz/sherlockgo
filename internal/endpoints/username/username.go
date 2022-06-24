@@ -5,19 +5,20 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/labstack/echo"
+	"github.com/pablodz/sherlockgo/internal/database"
+
+	"github.com/labstack/echo/v4"
 	"github.com/pablodz/sherlockgo/internal/models"
 	"github.com/pablodz/sherlockgo/internal/scraper"
-	"gorm.io/gorm"
 )
 
-func GETByUsernameStreaming(db *gorm.DB) echo.HandlerFunc {
+func GETByUsernameStreaming() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		username := c.Param("username")
 		// get all sites
 		var listSites []models.Sites
-		db.Find(&listSites)
+		database.DB.Find(&listSites)
 		// create http client
 		client := &http.Client{}
 		// chain responses
@@ -51,7 +52,7 @@ func GETByUsernameStreaming(db *gorm.DB) echo.HandlerFunc {
 	}
 }
 
-func GETByUsernameAndSiteFilteredByFoundStreaming(db *gorm.DB) echo.HandlerFunc {
+func GETByUsernameAndSiteFilteredByFoundStreaming() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
 		username := c.Param("username")
@@ -65,7 +66,7 @@ func GETByUsernameAndSiteFilteredByFoundStreaming(db *gorm.DB) echo.HandlerFunc 
 
 		// get all sites
 		var listSites []models.Sites
-		db.Find(&listSites)
+		database.DB.Find(&listSites)
 		// create http client
 		client := &http.Client{}
 		// chain responses

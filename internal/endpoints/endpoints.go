@@ -4,14 +4,13 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/pablodz/sherlockgo/internal/endpoints/sites"
 	"github.com/pablodz/sherlockgo/internal/endpoints/username"
-	"gorm.io/gorm"
 )
 
-func HandleRequest(db *gorm.DB) {
+func HandleRequest() {
 	e := echo.New()
 
 	/* Add here the middlewares */
@@ -20,9 +19,9 @@ func HandleRequest(db *gorm.DB) {
 
 	/* Add here the routes or endpoints */
 	e.GET("/", GETsimpleResponse())
-	e.GET("/sites", sites.GETListSites(db))
-	e.GET("/username/:username", username.GETByUsernameStreaming(db))
-	e.GET("/username/:username/found/:found", username.GETByUsernameAndSiteFilteredByFoundStreaming(db))
+	e.GET("/sites", sites.GETListSites())
+	e.GET("/username/:username", username.GETByUsernameStreaming())
+	e.GET("/username/:username/found/:found", username.GETByUsernameAndSiteFilteredByFoundStreaming())
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "6969"

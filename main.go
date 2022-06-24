@@ -22,7 +22,7 @@ func main() {
 	// start scraper with username
 	// scraper.ScrapeThisUsername(db, "pablodz") // test
 	// start Golang Echo server
-	endpoints.HandleRequest(db)
+	endpoints.HandleRequest()
 }
 
 func MigrateModels(db *gorm.DB) {
