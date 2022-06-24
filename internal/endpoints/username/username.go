@@ -18,7 +18,13 @@ func GETByUsernameStreaming() echo.HandlerFunc {
 		username := c.Param("username")
 		// get all sites
 		var listSites []models.Sites
-		database.DB.Find(&listSites)
+		db, err := database.GetDB()
+
+		if err != nil {
+
+			return err
+		}
+		db.Find(&listSites)
 		// create http client
 		client := &http.Client{}
 		// chain responses
@@ -66,7 +72,15 @@ func GETByUsernameAndSiteFilteredByFoundStreaming() echo.HandlerFunc {
 
 		// get all sites
 		var listSites []models.Sites
-		database.DB.Find(&listSites)
+
+		db, err := database.GetDB()
+
+		if err != nil {
+
+			return err
+		}
+
+		db.Find(&listSites)
 		// create http client
 		client := &http.Client{}
 		// chain responses
