@@ -29,5 +29,5 @@ func MigrateModels(db *gorm.DB) {
 	// Migrate to create tables in database
 	db.AutoMigrate(&models.Sites{})
 	// db.AutoMigrate(&models.Query{})
-	db.AutoMigrate(&models.UsernameRespnse{})
+	db.AutoMigrate(&models.UsernameResponse{})
 }

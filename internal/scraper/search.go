@@ -40,7 +40,7 @@ func DoSearchOneSite(username string, site models.Sites, client *http.Client) {
 
 }
 
-func DoSearchOneSiteChain(username string, site models.Sites, client *http.Client, chainResponses chan models.UsernameRespnse) {
+func DoSearchOneSiteChain(username string, site models.Sites, client *http.Client, chainResponses chan models.UsernameResponse) {
 	url := ParseFormatWithUsername(username, site)
 	found, statusCode, err := GetResponse(client, url, site)
 	if err != nil {
@@ -53,7 +53,7 @@ func DoSearchOneSiteChain(username string, site models.Sites, client *http.Clien
 		log.Println("[FOUND][NOT]["+site.ErrorType+"]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
 	}
 
-	chainResponses <- models.UsernameRespnse{
+	chainResponses <- models.UsernameResponse{
 		IDSite:           site.IDSite,
 		Username:         username,
 		URI:              url,

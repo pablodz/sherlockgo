@@ -21,7 +21,7 @@ func GETByUsername(db *gorm.DB) echo.HandlerFunc {
 		// create http client
 		client := &http.Client{}
 		// chain responses
-		chainResponses := make(chan models.UsernameRespnse)
+		chainResponses := make(chan models.UsernameResponse)
 
 		for _, site := range listSites {
 			go scraper.DoSearchOneSiteChain(username, site, client, chainResponses)
