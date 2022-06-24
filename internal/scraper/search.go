@@ -58,6 +58,8 @@ func DoSearchOneSiteChain(username string, site models.Sites, client *http.Clien
 		URI:              url,
 		Found:            found,
 		MethodValidation: site.ErrorType,
+		ResponseStatus:   statusCode,
+		SiteName:         site.Sitename,
 	}
 
 }

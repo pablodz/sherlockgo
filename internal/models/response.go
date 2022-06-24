@@ -5,4 +5,6 @@ type UsernameRespnse struct {
 	URI              string `json:"uri"`
 	MethodValidation string `json:"method_validation"`
 	Username         string `json:"username"`
+	ResponseStatus   int    `json:"response_status"`
+	SiteName         string `json:"site_name"`
 }
