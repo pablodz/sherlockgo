@@ -3,11 +3,11 @@ package endpoints
 import (
 	"net/http"
 
-	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/pablodz/sherlockgo/internal/endpoints/sites"
 	"github.com/pablodz/sherlockgo/internal/endpoints/username"
+	"gorm.io/gorm"
 )
 
 func HandleRequest(db *gorm.DB) {

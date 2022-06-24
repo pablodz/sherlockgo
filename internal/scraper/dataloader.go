@@ -8,7 +8,8 @@ import (
 	"os"
 
 	"github.com/cavaliergopher/grab/v3"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
+
 	"github.com/pablodz/sherlockgo/internal/models"
 )
 
@@ -41,6 +42,7 @@ func LoadData(db *gorm.DB, url string) {
 		log.Println(err)
 	}
 	// save to database
+	c := 0
 	for siteName, siteProps := range sites {
 		// Check if already exists
 		var siteTmp []models.Sites
@@ -58,6 +60,7 @@ func LoadData(db *gorm.DB, url string) {
 		}
 
 		db.Create(&models.Sites{
+			IDSite:            c,
 			Sitename:          siteName,
 			ErrorType:         siteProps.ErrorType,
 			ErrorMessage:      errMssg,
@@ -66,6 +69,7 @@ func LoadData(db *gorm.DB, url string) {
 			UsernameClaimed:   siteProps.UsernameClaimed,
 			UsernameUnclaimed: siteProps.UsernameUnclaimed,
 		})
+		c++
 		if err != nil {
 			log.Println(err)
 		}

@@ -3,9 +3,9 @@ package sites
 import (
 	"net/http"
 
-	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/pablodz/sherlockgo/internal/models"
+	"gorm.io/gorm"
 )
 
 func GETListSites(db *gorm.DB) echo.HandlerFunc {

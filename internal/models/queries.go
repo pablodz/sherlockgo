@@ -1,9 +1,6 @@
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
-)
+import "gorm.io/gorm"
 
 type Query struct {
 	gorm.Model `json:"model"`

@@ -3,11 +3,12 @@ package username
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 
-	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/pablodz/sherlockgo/internal/models"
 	"github.com/pablodz/sherlockgo/internal/scraper"
+	"gorm.io/gorm"
 )
 
 func GETByUsername(db *gorm.DB) echo.HandlerFunc {
@@ -35,6 +36,7 @@ func GETByUsername(db *gorm.DB) echo.HandlerFunc {
 		enc := json.NewEncoder(c.Response())
 		counter := 0
 		for l := range chainResponses {
+			l.IDDownload = strconv.Itoa(counter+1) + "/" + strconv.Itoa(len(listSites))
 			if err := enc.Encode(l); err != nil {
 				return err
 			}

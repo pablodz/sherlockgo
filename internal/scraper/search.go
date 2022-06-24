@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jinzhu/gorm"
 	"github.com/pablodz/sherlockgo/internal/models"
+	"gorm.io/gorm"
 )
 
 func ScrapeThisUsername(db *gorm.DB, username string) {
@@ -54,6 +54,7 @@ func DoSearchOneSiteChain(username string, site models.Sites, client *http.Clien
 	}
 
 	chainResponses <- models.UsernameRespnse{
+		IDSite:           site.IDSite,
 		Username:         username,
 		URI:              url,
 		Found:            found,
