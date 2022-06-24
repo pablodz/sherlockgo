@@ -21,7 +21,7 @@ func HandleRequest(db *gorm.DB) {
 	e.GET("/", GETsimpleResponse())
 	e.GET("/sites", sites.GETListSites(db))
 	e.GET("/username/:username", username.GETByUsername(db))
-	e.Logger.Fatal(e.Start("0.0.0.0")) // :8080
+	e.Logger.Fatal(e.Start("0.0.0.0:8080")) // :8080
 }
 
 func GETsimpleResponse() echo.HandlerFunc {
