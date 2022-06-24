@@ -2,6 +2,7 @@ package endpoints
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -21,7 +22,11 @@ func HandleRequest(db *gorm.DB) {
 	e.GET("/", GETsimpleResponse())
 	e.GET("/sites", sites.GETListSites(db))
 	e.GET("/username/:username", username.GETByUsername(db))
-	e.Logger.Fatal(e.Start("0.0.0.0:8080")) // :8080
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "6969"
+	}
+	e.Logger.Fatal(e.Start("0.0.0.0:" + port)) // :6969
 }
 
 func GETsimpleResponse() echo.HandlerFunc {
