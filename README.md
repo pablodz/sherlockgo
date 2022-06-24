@@ -6,8 +6,9 @@ Sherlock but faster and lighter. GUI, CLI, client, Http request and more
 
 ![](https://imgur.com/KWminza.png)
 
-List of features to implement:
+## Documentation
 
+Clic [here](http://localhost:6969/swagger/index.html) to see the documentation
 ## Usage
 
 ### Remote (not yet implement)
@@ -56,7 +57,7 @@ Options:
 - [ ] Timeout individual request
 - [ ] Multiple usernames requests
 - [x] Variations of username
-- [ ] Automatic documentation
+- [x] Automatic documentation
 - [ ] Unit tests
 - [x] Streaming requests
 - [x] Automatic releaser of binaries for multiple architectures
