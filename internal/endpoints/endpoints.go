@@ -3,9 +3,10 @@ package endpoints
 import (
 	"net/http"
 	"os"
+	"time"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/pablodz/sherlockgo/internal/endpoints/sites"
 	"github.com/pablodz/sherlockgo/internal/endpoints/username"
 	"gorm.io/gorm"
@@ -17,6 +18,10 @@ func HandleRequest(db *gorm.DB) {
 	/* Add here the middlewares */
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+	// Middleware
+	e.Use(middleware.TimeoutWithConfig(middleware.TimeoutConfig{
+		Timeout: 60 * time.Second,
+	}))
 
 	/* Add here the routes or endpoints */
 	e.GET("/", GETsimpleResponse())

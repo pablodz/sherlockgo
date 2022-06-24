@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"github.com/pablodz/sherlockgo/internal/models"
 	"github.com/pablodz/sherlockgo/internal/scraper"
 	"gorm.io/gorm"
@@ -84,8 +84,8 @@ func GETByUsernameAndSiteFilteredByFoundStreaming(db *gorm.DB) echo.HandlerFunc 
 		enc := json.NewEncoder(c.Response())
 		counter := 0
 		for l := range chainResponses {
-			l.IDDownload = strconv.Itoa(counter+1) + "/" + strconv.Itoa(len(listSites))
 			if l.Found == valWasFound {
+				l.IDDownload = strconv.Itoa(counter+1) + "/" + strconv.Itoa(len(listSites))
 				if err := enc.Encode(l); err != nil {
 					return err
 				}

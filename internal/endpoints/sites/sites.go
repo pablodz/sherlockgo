@@ -3,7 +3,7 @@ package sites
 import (
 	"net/http"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"github.com/pablodz/sherlockgo/internal/models"
 	"gorm.io/gorm"
 )
