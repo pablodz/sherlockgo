@@ -1,6 +1,6 @@
 # SherlockGo
 
-[Original](https://github.com/sherlock-project/sherlock)
+[Original](https://github.com/sherlock-project/sherlock): Hunt down social media accounts by username across social networks
 
 Sherlock but faster and lighter. GUI, CLI, client, Http request and more
 
