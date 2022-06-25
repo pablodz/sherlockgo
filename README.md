@@ -49,6 +49,8 @@ curl localhost:6969/api/v2/username/EXAMPLEUSER
 
 Options:
 
+- [ ] CLI
+- [ ] GUI
 - [ ] Tor
 - [ ] Proxy
 - [ ] HTTP1/2
@@ -59,7 +61,7 @@ Options:
 - [ ] Multiple usernames requests
 - [x] Variations of username
 - [x] Automatic documentation
-- [ ] Unit tests
+- [x] Unit tests
 - [x] Streaming requests
 - [x] Automatic releaser of binaries for multiple architectures
 - [x] Automatic build to Heroku
