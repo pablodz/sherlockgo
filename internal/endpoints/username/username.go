@@ -13,6 +13,16 @@ import (
 	"github.com/pablodz/sherlockgo/internal/scraper"
 )
 
+// Get data by Username godoc
+// @Summary Get results in streaming
+// @Schemes
+// @Description Get results in streaming
+// @Tags Username
+// @Accept json
+// @Produce json
+// @Success 200 {string} 200
+// @Param username   path string example "Username"
+// @Router /username/{username} [get]
 func GETByUsernameStreaming() echo.HandlerFunc {
 	return func(c echo.Context) error {
 
@@ -61,6 +71,17 @@ func GETByUsernameStreaming() echo.HandlerFunc {
 	}
 }
 
+// Get data by Username godoc
+// @Summary Get results in streaming
+// @Schemes
+// @Description Get results in streaming
+// @Tags Username
+// @Accept json
+// @Produce json
+// @Success 200 {string} 200
+// @Param username		path string example "Username"
+// @Param found   		path bool true	"Found"
+// @Router /username/{username}/found/{found} [get]
 func GETByUsernameAndSiteFilteredByFoundStreaming() echo.HandlerFunc {
 	return func(c echo.Context) error {
 

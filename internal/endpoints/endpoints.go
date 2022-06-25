@@ -22,6 +22,7 @@ func HandleRequest() {
 	docs.SwaggerInfo.Description = "This is a simple API to search for usernames in websites"
 	docs.SwaggerInfo.Version = "1.0"
 	docs.SwaggerInfo.BasePath = "/api/v2"
+	docs.SwaggerInfo.Host = "sherlockgo.herokuapp.com"
 	docs.SwaggerInfo.Schemes = []string{"https"} //"http" not supported by heroku
 
 	/* Add here the middlewares */
