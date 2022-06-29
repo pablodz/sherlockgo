@@ -12,7 +12,7 @@ Clic [here](https://sherlockgo.herokuapp.com/swagger/index.html) to see the docu
 
 ## Usage
 
-### Remote (not yet implement)
+### Remote
 
 
 ```shell
@@ -54,7 +54,7 @@ Options:
 - [ ] Tor
 - [ ] Proxy
 - [ ] HTTP1/2
-- [ ] ipv4/ipv6 requests 
+- [ ] ipv4/ipv6 requests
 - [ ] Format output
 - [ ] Timeout request
 - [ ] Timeout individual request

@@ -11,13 +11,17 @@ jobs:
     strategy:
       matrix:
         # build and publish in parallel: linux/386, linux/amd64, linux/arm64, windows/386, windows/amd64, darwin/amd64, darwin/arm64
-        goos: [linux, windows, darwin]
-        goarch: ["386", amd64, arm64]
+        goos: [linux, darwin, windows]
+        goarch: ["386", arm64, amd64, "386.exe"]
         exclude:
           - goarch: "386"
             goos: darwin
           - goarch: arm64
             goos: windows
+          - goarch: "386.exe"
+            goos: darwin
+          - goarch: "386.exe"
+            goos: linux
     steps:
       - uses: actions/checkout@v3
       - uses: wangyoucao577/go-release-action@v1.29
@@ -25,8 +29,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           goos: ${{ matrix.goos }}
           goarch: ${{ matrix.goarch }}
-          # binary_name: "sherlockgo"
           extra_files: LICENSE README.md
           compress_assets: false
-          binary_name: sherlockgo-${{ matrix.goos }}-${{ matrix.goarch }}
           asset_name: sherlockgo-${{ matrix.goos }}-${{ matrix.goarch }}
+          binary_name: sherlockgo-${{ matrix.goos }}-${{ matrix.goarch }}
