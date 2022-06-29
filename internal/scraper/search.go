@@ -53,14 +53,15 @@ func DoSearchOneSiteChain(username string, site models.Sites, client *http.Clien
 		log.Println("[FOUND][NOT]["+site.ErrorType+"]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
 	}
 
-	chainResponses <- models.UsernameResponse{
-		IDSite:           site.IDSite,
-		Username:         username,
-		URI:              url,
-		Found:            found,
-		MethodValidation: site.ErrorType,
-		ResponseStatus:   statusCode,
-		SiteName:         site.Sitename,
+	if statusCode/100 == 2 {
+		chainResponses <- models.UsernameResponse{
+			IDSite:           site.IDSite,
+			Username:         username,
+			URI:              url,
+			Found:            found,
+			MethodValidation: site.ErrorType,
+			ResponseStatus:   statusCode,
+			SiteName:         site.Sitename,
+		}
 	}
-
 }

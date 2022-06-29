@@ -5,7 +5,7 @@ import (
 
 	"github.com/pablodz/sherlockgo/internal/utils"
 
-	"github.com/glebarez/sqlite"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
