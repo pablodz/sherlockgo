@@ -25,6 +25,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           goos: ${{ matrix.goos }}
           goarch: ${{ matrix.goarch }}
-          binary_name: "sherlockgo"
+          # binary_name: "sherlockgo"
           extra_files: LICENSE README.md
-          # compress_assets: false
+          compress_assets: false
+          binary_name: sherlockgo-${{ matrix.goos }}-${{ matrix.goarch }}
+          asset_name: sherlockgo-${{ matrix.goos }}-${{ matrix.goarch }}
