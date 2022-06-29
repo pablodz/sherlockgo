@@ -18,10 +18,12 @@ jobs:
             goos: darwin
           - goarch: arm64
             goos: windows
-          - goarch: "386.exe"
-            goos: darwin
+          - goarch: "386"
+            goos: windows
           - goarch: "386.exe"
             goos: linux
+          - goarch: "386.exe"
+            goos: darwin
     steps:
       - uses: actions/checkout@v3
       - uses: wangyoucao577/go-release-action@v1.29
