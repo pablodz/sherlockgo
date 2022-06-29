@@ -24,9 +24,10 @@ jobs:
         run: go test -v -p=1 -timeout=0 ./...
       - uses: wangyoucao577/go-release-action@v1.29
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          goos: ${{ matrix.goos }}
-          goarch: ${{ matrix.goarch }}
           binary_name: "sherlockgo"
-          ldflags: "-s -w"
+          compress_assets: false
           extra_files: LICENSE README.md
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          goarch: ${{ matrix.goarch }}
+          goos: ${{ matrix.goos }}
+          ldflags: "-s -w"
