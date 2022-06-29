@@ -19,15 +19,12 @@ jobs:
           - goarch: arm64
             goos: windows
     steps:
-      - uses: actions/checkout@v2
-      # - name: Run tests
-        # run: go test -v -p=1 -timeout=0 ./...
+      - uses: actions/checkout@v3
       - uses: wangyoucao577/go-release-action@v1.29
         with:
-          binary_name: "sherlockgo"
-          compress_assets: false
-          extra_files: LICENSE README.md
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          goarch: ${{ matrix.goarch }}
           goos: ${{ matrix.goos }}
-          ldflags: "-s -w"
+          goarch: ${{ matrix.goarch }}
+          binary_name: "sherlockgo"
+          extra_files: LICENSE README.md
+          compress_assets: false
