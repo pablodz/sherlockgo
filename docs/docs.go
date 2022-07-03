@@ -58,44 +58,18 @@ const docTemplate = `{
                         "description": "Username",
                         "name": "username",
                         "in": "path"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/username/{username}/found/{found}": {
-            "get": {
-                "description": "Get results in streaming",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Username"
-                ],
-                "summary": "Get results in streaming",
-                "parameters": [
+                    },
                     {
-                        "type": "string",
-                        "description": "Username",
-                        "name": "username",
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
                         "in": "path"
                     },
                     {
-                        "type": "boolean",
-                        "description": "Found",
-                        "name": "found",
-                        "in": "path",
-                        "required": true
+                        "type": "string",
+                        "description": "OutputFormat",
+                        "name": "format",
+                        "in": "path"
                     }
                 ],
                 "responses": {
