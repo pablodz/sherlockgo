@@ -7,5 +7,10 @@ import (
 )
 
 func ReturnError(c echo.Context, err error) error {
+	// get ip address
+	// ip := c.RealIP()
+	// if ip == "" {
+	// 	ip = c.Request().RemoteAddr
+	// }
 	return c.JSON(http.StatusInternalServerError, err.Error())
 }
