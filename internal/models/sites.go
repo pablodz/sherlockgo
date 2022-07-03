@@ -18,7 +18,7 @@ type Sites struct {
 type SitesJSON struct {
 	Sitename          string      `json:"_key" gorm:"unique"`
 	ErrorType         string      `json:"errorType"`
-	ErrorMessage      interface{} `json:"errorMsg"`
+	ErrorMessage      interface{} `json:"errorMsg" gorm:"type:text"`
 	URLDomain         string      `json:"urlMain"`
 	URLFormat         string      `json:"url"`
 	UsernameClaimed   string      `json:"username_claimed"`
