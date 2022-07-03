@@ -36,7 +36,7 @@ func GETByUsernameStreaming() echo.HandlerFunc {
 		// found := c.QueryParam("found")
 		limitInt, err := strconv.Atoi(c.QueryParam("limit"))
 		if err != nil {
-			return responses.ReturnError(c, err)
+			limitInt = 10
 		}
 		// print all query params
 		for i, v := range c.QueryParams() {
