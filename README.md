@@ -1,6 +1,6 @@
 # SherlockGo
 
-[Original](https://github.com/sherlock-project/sherlock)
+[Original](https://github.com/sherlock-project/sherlock): Hunt down social media accounts by username across social networks
 
 Sherlock but faster and lighter. GUI, CLI, client, Http request and more
 
@@ -12,7 +12,7 @@ Clic [here](https://sherlockgo.herokuapp.com/swagger/index.html) to see the late
 
 ## Usage
 
-### Remote (not yet implement)
+### Remote
 
 
 ```shell
@@ -40,6 +40,8 @@ curl localhost:6969/api/v2/username/EXAMPLEUSER
 
 Options:
 
+- [ ] CLI
+- [ ] GUI
 - [ ] Tor
 - [ ] Proxy
 - [ ] HTTP1/2
