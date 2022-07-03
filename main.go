@@ -19,8 +19,6 @@ func main() {
 	MigrateModels(db)
 	// download json from sherlock
 	scraper.LoadData(db, utils.TestUrl)
-	// start scraper with username
-	// scraper.ScrapeThisUsername(db, "pablodz") // test
 	// start Golang Echo server
 	endpoints.HandleRequest()
 }
@@ -28,6 +26,5 @@ func main() {
 func MigrateModels(db *gorm.DB) {
 	// Migrate to create tables in database
 	db.AutoMigrate(&models.Sites{})
-	// db.AutoMigrate(&models.Query{})
 	db.AutoMigrate(&models.UsernameResponse{})
 }

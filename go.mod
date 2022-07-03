@@ -1,15 +1,15 @@
 module github.com/pablodz/sherlockgo
 
-go 1.17
+go 1.18
 
 require (
 	github.com/cavaliergopher/grab/v3 v3.0.1
 	github.com/labstack/echo/v4 v4.7.2
-	github.com/stretchr/testify v1.7.5
+	github.com/stretchr/testify v1.8.0
 	github.com/swaggo/echo-swagger v1.3.3
 	github.com/swaggo/swag v1.8.3
 	gorm.io/driver/sqlite v1.3.5
-	gorm.io/gorm v1.23.4
+	gorm.io/gorm v1.23.7
 )
 
 require (

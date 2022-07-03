@@ -1,8 +1,10 @@
 package scraper
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/pablodz/sherlockgo/internal/models"
 	"gorm.io/gorm"
@@ -46,22 +48,15 @@ func DoSearchOneSiteChain(username string, site models.Sites, client *http.Clien
 	if err != nil {
 		log.Println("[GetResponse][Error]", err)
 	}
-
-	if found {
-		log.Println("[FOUND][YES]["+site.ErrorType+"]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
-	} else {
-		log.Println("[FOUND][NOT]["+site.ErrorType+"]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
-	}
-
-	if statusCode/100 == 2 {
-		chainResponses <- models.UsernameResponse{
-			IDSite:           site.IDSite,
-			Username:         username,
-			URI:              url,
-			Found:            found,
-			MethodValidation: site.ErrorType,
-			ResponseStatus:   statusCode,
-			SiteName:         site.Sitename,
-		}
+	log.Println("[FOUND]["+strconv.FormatBool(found)+"]["+site.ErrorType+"]Searching in:", site.Sitename, "for", username, "at", url, "StatusCode:", statusCode)
+	chainResponses <- models.UsernameResponse{
+		Found:            fmt.Sprint(found),
+		URI:              url,
+		MethodValidation: site.ErrorType,
+		Username:         username,
+		ResponseStatus:   statusCode,
+		SiteName:         site.Sitename,
+		IDSite:           site.IDSite,
+		IDDownload:       "",
 	}
 }

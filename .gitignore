@@ -17,4 +17,4 @@
 *.json
 
 docs/swagger*
-./sherlockgo
+/sherlock*

@@ -1,7 +1,13 @@
 
 MICROSERVICE_NAME=pablogod/sherlockgo:latest
 
-build:
+gen-docs:
+	swag init
+
+run-local: gen-docs
+	swag init && go run main.go
+
+build: gen-docs
 	docker build -t $(MICROSERVICE_NAME) .
 
 release:

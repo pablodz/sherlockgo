@@ -17,6 +17,10 @@ import (
 func HandleRequest() {
 	e := echo.New()
 
+	/* Disable Banner */
+	e.HideBanner = true
+	e.HidePort = true
+
 	/* Docs */
 	docs.SwaggerInfo.Title = "SherlockGo API"
 	docs.SwaggerInfo.Description = "This is a simple API to search for usernames in websites"
@@ -37,7 +41,6 @@ func HandleRequest() {
 	e.GET("/api/v2/", GETsimpleResponse())
 	e.GET("/api/v2/sites", sites.GETListSites())
 	e.GET("/api/v2/username/:username", username.GETByUsernameStreaming())
-	e.GET("/api/v2/username/:username/found/:found", username.GETByUsernameAndSiteFilteredByFoundStreaming())
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	port := os.Getenv("PORT")
