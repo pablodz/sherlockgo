@@ -32,6 +32,10 @@ func HandleRequest() {
 	/* Add here the middlewares */
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{echo.GET, echo.POST, echo.PUT, echo.DELETE},
+	}))
 	// Middleware
 	// e.Use(middleware.TimeoutWithConfig(middleware.TimeoutConfig{
 	// 	Timeout: 60 * time.Second,
