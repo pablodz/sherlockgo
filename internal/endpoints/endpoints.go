@@ -10,6 +10,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/pablodz/sherlockgo/docs"
 	"github.com/pablodz/sherlockgo/internal/endpoints/sites"
+	"github.com/pablodz/sherlockgo/internal/endpoints/sitescraper"
 	"github.com/pablodz/sherlockgo/internal/endpoints/username"
 	echoSwagger "github.com/swaggo/echo-swagger"
 )
@@ -45,6 +46,7 @@ func HandleRequest() {
 	e.GET("/api/v2/", GETsimpleResponse())
 	e.GET("/api/v2/sites", sites.GETListSites())
 	e.GET("/api/v2/username/:username", username.GETByUsernameStreaming())
+	e.GET("/api/v2/linkpreview", sitescraper.GETLinkPreview())
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	port := os.Getenv("PORT")
