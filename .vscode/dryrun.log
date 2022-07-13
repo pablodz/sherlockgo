@@ -1,5 +1,0 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/gdp/Desktop/git/user1/sherlockgo'
-swag init
-make: Leaving directory '/home/gdp/Desktop/git/user1/sherlockgo'
- 
