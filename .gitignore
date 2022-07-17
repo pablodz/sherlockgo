@@ -18,3 +18,4 @@
 
 docs/swagger*
 /sherlock*
+/.vscode
