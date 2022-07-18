@@ -142,3 +142,7 @@ func GETByUsernameStreaming() echo.HandlerFunc {
 		return nil
 	}
 }
+
+func GETByMultipleUsernames() echo.HandlerFunc{
+	
+}

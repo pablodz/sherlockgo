@@ -46,6 +46,7 @@ func HandleRequest() {
 	e.GET("/api/v2/", GETsimpleResponse())
 	e.GET("/api/v2/sites", sites.GETListSites())
 	e.GET("/api/v2/username/:username", username.GETByUsernameStreaming())
+	e.POST("/api/v2/usernames/:username", username.GETByMultipleUsernames())
 	e.GET("/api/v2/linkpreview", sitescraper.GETLinkPreview())
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
